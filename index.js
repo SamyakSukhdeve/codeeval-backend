@@ -6,10 +6,19 @@ const router = require("./routes/codeReview");
 const app = express();
 const port = process.env.PORT;
 app.use(express.json());
-app.use(cors((origin = "https://codeeval.samyaksukhdeve.dev/")));
+
+const corsOptions = {
+  origin: process.env.ALLOWED_ORIGIN,
+};
+app.use(cors(corsOptions));
 
 app.get("/test", (req, res) => {
-  res.status(200).send("Api is working fine..");
+  try {
+    res.status(200).send("Api is working fine..");
+  } catch (error) {
+    console.error("Error in /test route:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.use(router);

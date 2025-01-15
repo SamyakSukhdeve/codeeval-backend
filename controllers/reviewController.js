@@ -21,7 +21,7 @@ Your task:
 4. Document all identified issues, along with actionable solutions.
 5. Add code comments to explain your modifications. This is a mandatory requirement.
 6. Do not summarize or explain the purpose of the provided code. Focus solely on improvement and solutions.
-7. Ensure your response is structured, precise, and in Markdown format. This is a mandatory requirement.
+7. Ensure your response is structured, precise, and in Markdown format. This is a mandatory requirement.Do not skip this.
 8. Avoid including all the code in your response. Include only:
    - Portions needing improvement.
    - Snippets you've altered or rewritten.
