@@ -6,7 +6,7 @@ const router = require("./routes/codeReview");
 const app = express();
 const port = process.env.PORT;
 app.use(express.json());
-app.use(cors());
+app.use(cors((origin = "https://codeeval.samyaksukhdeve.dev/")));
 
 app.get("/test", (req, res) => {
   res.status(200).send("Api is working fine..");
