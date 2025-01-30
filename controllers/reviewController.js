@@ -51,7 +51,7 @@ Ensure that all feedback is actionable and concise, adhering to professional cod
       return res.status(401).json({ message: "Code not provided" });
     }
     const response = await model.generateContent(userCode);
-    res.json(response.response.candidates[0].content.parts[1].text);
+    res.json(response.response.candidates[0]?.content.parts[1]?.text);
   } catch (error) {
     throw error;
   }
