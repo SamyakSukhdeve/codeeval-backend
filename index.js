@@ -9,15 +9,6 @@ app.use(express.json());
 
 const allowedOrigins = [process.env.ALLOWED_ORIGIN];
 
-app.use(function (request, response, next) {
-  response.header("Access-Control-Allow-Origin", "*");
-  response.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
-
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -30,6 +21,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
+
 
 app.get("/test", (req, res) => {
   try {
