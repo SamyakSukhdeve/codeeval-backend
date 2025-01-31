@@ -5,9 +5,7 @@ const router = require("./routes/codeReview");
 
 const app = express();
 const port = process.env.PORT;
-app.use(express.json());
-
-const allowedOrigins = [process.env.ALLOWED_ORIGIN];
+const allowedOrigins = [process.env.ALLOWED_ORIGIN, "http://localhost:5173"];
 
 app.use(
   cors({
@@ -21,7 +19,7 @@ app.use(
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
-
+app.use(express.json());
 
 app.get("/test", (req, res) => {
   try {

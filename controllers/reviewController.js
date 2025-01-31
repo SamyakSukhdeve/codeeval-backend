@@ -48,12 +48,30 @@ Ensure that all feedback is actionable and concise, adhering to professional cod
   const userCode = req.body.userCode;
   try {
     if (!userCode) {
-      return res.status(401).json({ message: "Code not provided" });
+      res.status(400).json({ message: "Code not provided" });
+      return;
     }
     const response = await model.generateContent(userCode);
-    res.json(response.response.candidates[0]?.content.parts[1]?.text);
+    if (
+      response &&
+      response.response &&
+      response.response.candidates &&
+      response.response.candidates.length > 0 &&
+      response.response.candidates[0].content &&
+      response.response.candidates[0].content.parts &&
+      response.response.candidates[0].content.parts.length > 0 &&
+      response.response.candidates[0].content.parts[0].text
+    ) {
+      return res.json(response.response.candidates[0].content.parts[0].text);
+    } else {
+      console.error("Unexpected response structure:", response); 
+      res.status(500).json({ message: "Failed to process model response" }); 
+      return;
+    }
   } catch (error) {
-    throw error;
+    console.error("Error generating content:", error);
+    res.status(500).json({ message: "Failed to generate content" });
+    return;
   }
 };
 
