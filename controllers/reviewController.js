@@ -4,7 +4,7 @@ const reviewController = async (req, res) => {
   const apikey = process.env.GEMINI_API_KEY;
   const genAI = new GoogleGenerativeAI(apikey);
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-thinking-exp-1219",
+    model: "gemini-2.5-pro-exp-03-25",
 
     systemInstruction: `
 
@@ -64,8 +64,8 @@ Ensure that all feedback is actionable and concise, adhering to professional cod
     ) {
       return res.json(response.response.candidates[0].content.parts[0].text);
     } else {
-      console.error("Unexpected response structure:", response); 
-      res.status(500).json({ message: "Failed to process model response" }); 
+      console.error("Unexpected response structure:", response);
+      res.status(500).json({ message: "Failed to process model response" });
       return;
     }
   } catch (error) {
